@@ -1,0 +1,9 @@
+{% load crispy_forms_tags %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<form method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_p}}  {# Esto renderizará los campos del formulario como párrafos #}
+    <button type="submit">Guardar</button>
+</form>
