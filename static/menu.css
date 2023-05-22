@@ -1,0 +1,60 @@
+* {
+    margin:0px;
+    padding:0px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:rgb(235, 235, 235);
+}
+body{
+    background-color: #212121;
+}
+li,ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+}
+.Submenu{
+    margin-top: 25px;
+    padding: 5px;
+}
+.logo{
+    font-weight: 400;
+    font-size: 25px;
+    display: inline;
+    margin-right: 10px;
+}
+h2{
+    margin-right: 50px;
+    font-weight: lighter;
+    font-size: 20px;
+}
+a{  
+    text-decoration: none;
+    font-weight: lighter;
+    background-color: #cd5151;
+    font-size: 18px;
+    padding: 10px;
+    width:200px;
+}
+nav{
+    display: flex;
+    flex-direction: row;
+    background-color: #cd5151;
+    padding-top: 20px;
+    padding-left: 20px;
+    height: 50px;
+}
+/*Permite pintar las opciones cuando son selecionadas*/
+nav li a:hover {
+    background-color: #e97070;
+}
+/*Permite el despliegue de las opciones */
+nav li ul {
+    display:none;
+    position:absolute;
+    min-width:140px;
+}
+/*Permite la visualización del despliegue al tener  el cursor encima*/
+nav li:hover > ul {
+    display:block;
+}
+

@@ -1,0 +1,35 @@
+{% extends 'layouts/barra.html' %}
+{% load static %}
+{%block blockname%}
+    <h1 class="titulo">Lista de las cedulas</h1>
+    <div class="botones">
+        <a href='/registrar-cedula' class="agregar">Agregar</a>
+    </div>
+    <div class="contenedor-tabla">
+        <table class="tabla">
+            <tr >
+                <td class="encabezado">Folio</td>
+                <td class="encabezado">Juego</td>
+                <td class="encabezado">Titulo</td>
+                <td class="encabezado">Resultado</td>
+                <td class="encabezado">Fecha de inicio</td>
+                <td class="encabezado">Fecha de finalización</td>
+            </tr>
+
+            {%for cedula in cedulas%}
+            <tr>
+                <td>{{cedula.name}}</td>
+                <td>{{cedula.play_id}}</td>
+                <td>{{cedula.play_desc}}</td>
+                <td>{{cedula.resultado}}</td>
+                <td>{{cedula.fecha_inicio}}</td>
+                <td>{{cedula.fecha_fin}}</td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+
+        
+    </div>
+
+{%endblock%}

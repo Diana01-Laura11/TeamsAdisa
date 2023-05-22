@@ -1,0 +1,16 @@
+footer{
+    background-color: #cd5151;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    height: 100px;
+}
+h3{
+    margin-left: 100px;
+    font-weight:400;
+    font-size: 25px;
+}
+h4{
+    margin-left: 150px;
+    font-weight:lighter ;
+}

@@ -1,10 +1,17 @@
 from django import forms
 from .models import cedulas,arbitros,equipos,League,Play,jugadores,estadios,coachs
+from django.contrib.admin import widgets
 
 class cedulas(forms.ModelForm):
+    fecha_inicio=forms.DateTimeField(
+        label='Fecha Inicio',
+        widget=forms.DateTimeInput(attrs={'class': 'datetimepicker', 'type': 'datetime-local'}),)
+    fecha_fin=forms.DateTimeField(
+        label='Fecha Fin',
+        widget=forms.DateTimeInput(attrs={'class': 'datetimepicker', 'type': 'datetime-local'}),)
     class Meta:
         model = cedulas
-        fields = ["name","play_id","playera_id","play_desc","resultado","fecha_inicio","fecha_fin","state"]
+        fields = ["name","play_id","play_desc","resultado","fecha_inicio","fecha_fin"]
 
 class arbitros(forms.ModelForm):
     class Meta:
@@ -19,12 +26,17 @@ class equipos(forms.ModelForm):
 class League (forms.ModelForm):
     class Meta:
         model = League
-        fields = ["name","foto","cant_teams"]
+        fields = ("name","foto")
 
 class Play(forms.ModelForm):
+    fecha = forms.DateTimeField(
+        label='Fecha',
+        widget=forms.DateTimeInput(attrs={'class': 'datetimepicker', 'type': 'datetime-local'}),)
     class Meta:
         model = Play
-        fields = ["folio","fecha","liga","status_play"]
+        fields = ["folio","fecha","liga","team1","team2","estadio","arbitro","posicion"]
+        
+    
 
 class jugadores(forms.ModelForm):
     class Meta:

@@ -2,9 +2,8 @@ from django.db import models
 
 #______________________________________________________________
 class League(models.Model):
-    name = models.CharField(max_length=200)
-    foto = models.ImageField(upload_to='images/', default=None)
-    cant_teams = models.BigIntegerField()
+    name = models.CharField(max_length=200,verbose_name="Nombre de la liga")
+    foto = models.ImageField(upload_to='images/',verbose_name="Foto")
 
     def __str__(self):
         return self.name
@@ -14,18 +13,21 @@ class poblaciones(models.Model):
     name = models.CharField(max_length=200)
 #______________________________________________________________
 class coachs(models.Model):  
-    name = models.CharField(max_length=200,help_text="Ingrese el nombre del coach del equipo")
-    photo = models.ImageField(upload_to='images/',default=None)
+    name = models.CharField(max_length=200,verbose_name="Nombre del coach")
+    photo = models.ImageField(upload_to='images/',default=None,verbose_name="Foto")
 
     def __str__(self):
         return self.name
 #______________________________________________________________
 class equipos(models.Model):
-    liga_id = models.ForeignKey(League, on_delete=models.CASCADE,null=False,blank=False)
-    name = models.CharField(max_length=200,verbose_name="Nombre",help_text="Ingrese el nombre del equipo",null=False,blank=False)
-    coach_id = models.ForeignKey(coachs,on_delete=models.CASCADE,null=False,blank=False)
-    photo = models.ImageField(upload_to='images/',default=None)
-    ##jugadores2_ids = models.ManyToManyField(jugadores,on_delete=models.CASCADE,null=False,blank=False)
+    liga_id = models.ForeignKey(League, on_delete=models.CASCADE,null=False,blank=False,verbose_name="Liga")
+    name = models.CharField(max_length=200,verbose_name="Nombre del equipo",null=False,blank=False)
+    coach_id = models.ForeignKey(coachs,on_delete=models.CASCADE,null=False,blank=False,verbose_name="Coach")
+    photo = models.ImageField(upload_to='images/',default=None,verbose_name="Foto")
+    ##jugadores2_ids = models.ManyToManyField('jugadores',verbose_name="Jugadores")
+    
+    def __str__(self):
+        return self.name
     
     class Meta:
         verbose_name = 'Equipo'
@@ -33,10 +35,10 @@ class equipos(models.Model):
         ordering=['liga_id','name']
 #______________________________________________________________
 class jugadores(models.Model):
-    team = models.ForeignKey(equipos,on_delete=models.CASCADE,related_name="jugadores_ids")
-    name = models.CharField(max_length=200,help_text="Ingrese el nombre del jugador")
-    photo = models.ImageField(upload_to='images/',default=None)
-    numero = models.IntegerField(verbose_name="Numero",help_text= "Numero de playera")
+    team = models.ForeignKey(equipos,on_delete=models.CASCADE,related_name="jugadores_ids",verbose_name="Equipo")
+    name = models.CharField(max_length=200,verbose_name="Nombre del jugador")
+    photo = models.ImageField(upload_to='images/',default=None,verbose_name="Foto")
+    numero = models.IntegerField(verbose_name="Número de la playera")
     posicion = [
     ('del','Delantero'),
     ('def','Defensa'),
@@ -44,7 +46,10 @@ class jugadores(models.Model):
     ('car', 'Carrilero'),
     ('cen', 'Central'),
     ]
-    posicion = models.CharField(max_length=3, choices=posicion,default='del')
+    posicion = models.CharField(max_length=3, choices=posicion,default='del',verbose_name="Posición")
+    
+    def __str__(self):
+        return self.name
     
     
     class Meta:
@@ -53,86 +58,66 @@ class jugadores(models.Model):
         ordering=['team','name']
 
 #______________________________________________________________
-class Play(models.Model):
-    folio = models.CharField(max_length=200)
-    fecha = models.DateField() 
-    liga = models.ForeignKey(League, on_delete=models.CASCADE, default=None, )
-
-    def __str__(self):
-        return self.folio
-    
-    CREADO = 'cre'
-    PROGRAMADO = 'prog'
-    REALIZADO = 'rea'
-    CANCELADO = 'can'
-
-    STATUS_CHOICES = [
-        ( CREADO, 'Creado' ),
-        ( PROGRAMADO, 'Programado' ),
-        ( REALIZADO, 'Realizado' ),
-        ( CANCELADO, 'Cancelado' ),
-    ]
-
-    status_play = models.CharField(max_length=4, choices=STATUS_CHOICES, default= CREADO)
-
-class Play_Arbitro(models.Model):
-    play = models.ForeignKey(Play, on_delete=models.CASCADE)
-
-    CENTRAL = 'cen'
-    BANDERA = 'ban'
-    OTRO = 'otro'
-
-    POSICION_CHOICES = [
-        (CENTRAL, 'Central'),
-        (BANDERA, 'Bandera'),
-        (OTRO, 'Otro')
-    ]
-
-    posicion = models.CharField(max_length=4, choices=POSICION_CHOICES, default=CENTRAL)
-
-
-
-#______________________________________________________________
 class estadios(models.Model):
-    liga_id = models.ForeignKey(League, on_delete=models.CASCADE,null=False,blank=False)
-    name = models.CharField(max_length=200,help_text="Ingrese el nombre del estadio",null=False,blank=False)
-    photo = models.ImageField(upload_to='images/',default=None)
+    liga_id = models.ForeignKey(League, on_delete=models.CASCADE,verbose_name="Liga")
+    name = models.CharField(max_length=200,verbose_name="Nombre del estadio")
+    photo = models.ImageField(upload_to='images/',verbose_name="Foto del estadio")
     
+    def __str__(self):
+        return self.name
     
     class Meta:
         verbose_name = 'Estadio'
         verbose_name_plural = 'Estadios'
         ordering=['liga_id','name']
-    
+
 #______________________________________________________________
 class arbitros(models.Model):
-    liga_id= models.ForeignKey(League,on_delete=models.CASCADE,null=False,blank=False)
-    name = models.CharField(max_length=200,help_text="Ingrese el nombre del arbitro",null=False,blank=False)
-    photo = models.ImageField(upload_to='images/',default=None)
+    liga_id= models.ForeignKey(League,on_delete=models.CASCADE,verbose_name="Liga")
+    name = models.CharField(max_length=200,verbose_name="Nombre del arbitro",)
+    photo = models.ImageField(upload_to='images/',verbose_name="Foto")
     
+    def __str__(self):
+        return self.name
     class Meta:
         verbose_name = 'Arbitro'
         verbose_name_plural = 'Arbitros'
         ordering=['liga_id','name']
 
+#______________________________________________________________
+class Play(models.Model):
+    folio = models.CharField(max_length=200,verbose_name="Folio")
+    fecha = models.DateTimeField() 
+    liga = models.ForeignKey(League,on_delete=models.DO_NOTHING,verbose_name="Liga" )
+    team1 = models.ForeignKey(equipos,on_delete=models.DO_NOTHING, null=True, default=None,related_name='team1_plays',verbose_name="Equipo Local")
+    team2 = models.ForeignKey(equipos,on_delete=models.DO_NOTHING, null=True, default=None,related_name='team2_plays',verbose_name="Equipo Visitante")
+    estadio = models.ForeignKey(estadios,on_delete=models.DO_NOTHING, null=True, default=None,verbose_name="Estadio")
+    arbitro = models.ForeignKey(arbitros, on_delete=models.DO_NOTHING, null=True, default=None, verbose_name="Arbitro")
 
+    POSICION_CHOICES = [
+        ('cen', 'Central'),
+        ('ban', 'Bandera'),
+        ('otro', 'Otro')
+    ]
+    posicion = models.CharField(max_length=4, choices=POSICION_CHOICES, default='cen',verbose_name="Posición del arbitro")
+
+    def __str__(self):
+        return self.folio
+    
         
 #_____________________________________________________________
     
 class cedulas(models.Model):
-    name = models.CharField(max_length=200,verbose_name="Titulo",null=False,blank=False)
+    name = models.CharField(max_length=200,verbose_name="Folio",null=False,blank=False)
     play_id = models.ForeignKey(Play,on_delete=models.CASCADE,verbose_name='Juego')
-    playera_id = models.ForeignKey(jugadores, on_delete=models.CASCADE)
-    play_desc = models.CharField(max_length=200)
-    resultado = models.CharField(max_length=200)
-    fecha_inicio = models.DateField(null=False,blank=False)
-    fecha_fin = models.DateField(null=False,blank=False)
-    state = [
-    ('cre','Creado'),
-    ('env','Enviada'),
-    ('can','Cancelado')
-    ]
-    state = models.CharField(max_length=3, choices=state,default='cre')
+    play_desc = models.CharField(max_length=200,verbose_name="Titulo")
+    resultado = models.CharField(max_length=200,verbose_name="Resultado del partido")
+    fecha_inicio = models.DateTimeField(null=False,blank=False,verbose_name="Fecha de incio")
+    fecha_fin = models.DateField(null=False,blank=False,verbose_name="Fecha de finalización")
+    
+    def __str__(self):
+        return self.name
+    
     
     
     

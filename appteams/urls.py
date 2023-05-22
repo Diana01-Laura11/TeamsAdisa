@@ -3,12 +3,15 @@ from . import views
 
 
 urlpatterns = [
-    path('cedulas/', views.cedulas_view),
-    path('arbitros/', views.arbitros_view),
-    path('equipos/', views.equipos_view),
-    path('League/', views.League_view),
-    path('estadios/', views.estadios_view),
-    path('Play/', views.Play_view),
-    path('coachs/', views.coachs_view),
-    path('jugadores/', views.jugadores_view)
+    path('', views.estadios_view),
+    path('registrar-cedula/', views.cedulas_view),
+    path('registrar-arbitro/', views.arbitros_view),
+    path('registrar-equipo/', views.equipos_view),
+    path('registrar-League/', views.League_view),
+    path('registrar-estadio/', views.estadios_view),
+    path('registrar-Play/', views.Play_view),
+    path('registrar-coach/', views.coachs_view),
+    path('registrar-jugador/', views.jugadores_view),
+    path('equipos/',views.ver_equipos),
+    path('cedulas/',views.ver_cedulas),
 ]

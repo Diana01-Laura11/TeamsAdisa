@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'menu.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'formulario.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'footer.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'tabla.css'%}">
+</head>
+<body>
+    <div id="header">
+    <nav class="navbar"> 
+        <h1 class="logo">ADISA Teams</h1>
+        <div>
+            <ul>
+                <li>
+                    <h2>Agregar ⌵</h2>
+                    <ul class="Submenu">
+                        <li>
+                            <a href="/registrar-equipo" class="opcion">Equipo</a>
+                        </li>
+                        <li> 
+                            <a href="/registrar-jugador" class="opcion">Jugador</a>
+                        </li>
+                        <li> 
+                            <a href="/registrar-coach" class="opcion">Coach</a>
+                        </li>
+                        <li> 
+                            <a href="/registrar-arbitro" class="opcion">Arbitro</a>
+                        </li>
+                        <li> 
+                            <a href="/registrar-League" class="opcion">Liga</a>
+                        </li>
+                    </ul>   
+                </li> 
+
+                <li>
+                    <h2>Realizar un registro ⌵</h2>
+                    <ul class="Submenu">
+                        <li>
+                            <a href="/registrar-Play" class="opcion">Juego</a>
+                        </li>
+                        <li> 
+                            <a href="/registrar-cedula" class="opcion">Cedula</a>
+                        </li>
+                    </ul>   
+                </li> 
+
+                <li>
+                    <h2>Ver ⌵</h2>
+                    <ul class="Submenu">
+                        <li>
+                            <a href="/equipos" class="opcion">Equipos</a>
+                        </li>
+                        <li> 
+                            <a href="/jugadores" class="opcion">Jugadores</a>
+                        </li>
+                        <li> 
+                            <a href="/coachs" class="opcion">Coachs</a>
+                        </li>
+                        <li> 
+                            <a href="/arbitros" class="opcion">Arbitros</a>
+                        </li>
+                        <li> 
+                            <a href="/League" class="opcion">Ligas</a>
+                        </li>
+                        <li> 
+                            <a href="/cedulas" class="opcion">Cedulas</a>
+                        </li>
+                        <li> 
+                            <a href="/League" class="opcion">Juegos</a>
+                        </li>
+                    </ul>   
+                </li> 
+            </ul>
+        </div>
+    </nav>
+    </div>
+
+    {% block blockname %}
+        
+    {% endblock%}
+
+    <footer>
+        <h3>Creadores</h3>
+        <h4>Salma Almazán Barajas</h4>
+        <h4>Dinana Laura Equihua Díaz</h4>
+        <h4>Alonso de Jesús Vargas Rincón</h4>
+    </footer>
+</body>
+</html>

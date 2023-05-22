@@ -1,0 +1,28 @@
+{% extends 'layouts/barra.html' %}
+{% load static %}
+{%block blockname%}
+    <h1 class="titulo">Lista de los equipos</h1>
+    <div class="botones">
+        <a href='/registrar-cedula' class="agregar">Agregar</a>
+    </div>
+    <div class="contenedor-tabla">
+        <table class="tabla">
+            <tr >
+                <td class="encabezado">Nombre</td>
+                <td class="encabezado">Foto</td>
+                <td class="encabezado">Coach</td>
+                <td class="encabezado">Liga</td>
+            </tr>
+
+            {%for equipo in equipos%}
+            <tr>
+                <td>{{equipo.name}}</td>
+                <td><img src="{% static equipo.photo.url %}" alt="Foto del equipo"></td>
+                <td>{{equipo.coach_id.name}}</td>
+                <td>{{equipo.liga_id.name}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{%endblock%}
