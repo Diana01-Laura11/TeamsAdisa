@@ -17,7 +17,7 @@
             {%for equipo in equipos%}
             <tr>
                 <td>{{equipo.name}}</td>
-                <td><img src="{% static equipo.photo.url %}" alt="Foto del equipo"></td>
+                <td><img src="{{ equipo.photo.url }}" alt="Foto del equipo" width="150"></td>
                 <td>{{equipo.coach_id.name}}</td>
                 <td>{{equipo.liga_id.name}}</td>
             </tr>
