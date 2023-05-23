@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import cedulas,arbitros,equipos,League,Play,jugadores,estadios,coachs
 from . import models 
 
@@ -134,3 +134,14 @@ def ver_cedulas(request):
     return render(request,'cedulas.html',{
         'cedulas' : ver_cedulas,
     })
+def ver_jugadores(request):
+    ver_jugadores = models.jugadores.objects.all()  
+    return render(request,'jugadores.html',{
+        'jugadores' : ver_jugadores
+    })
+
+def eliminarJugador(request,id):
+    jugador = models.jugadores.objects.get(id = id)
+    jugador.delete()
+    return redirect('http://127.0.0.1:8000/jugadores/')
+    
