@@ -193,7 +193,7 @@ def eliminarArbitros(request,id):
     return redirect('http://127.0.0.1:8000/arbitros/')
 
 def eliminarLigas(request,id):
-    liga = models.ligas.objects.get(id = id)
+    liga = models.League.objects.get(id = id)
     liga.delete()
     return redirect('http://127.0.0.1:8000/League/')
 
@@ -203,7 +203,7 @@ def eliminarCedulas(request,id):
     return redirect('http://127.0.0.1:8000/cedulas/')
 
 def eliminarJuegos(request,id):
-    juego = models.plays.objects.get(id = id)
+    juego = models.Play.objects.get(id = id)
     juego.delete()
     return redirect('http://127.0.0.1:8000/plays/')
 

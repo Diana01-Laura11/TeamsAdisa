@@ -20,9 +20,9 @@ class coachs(models.Model):
         return self.name
 #______________________________________________________________
 class equipos(models.Model):
-    liga_id = models.ForeignKey(League, on_delete=models.CASCADE,null=False,blank=False,verbose_name="Liga")
+    liga_id = models.ForeignKey(League, on_delete=models.SET_NULL,null=True,blank=False,verbose_name="Liga")
     name = models.CharField(max_length=200,verbose_name="Nombre del equipo",null=False,blank=False)
-    coach_id = models.ForeignKey(coachs,on_delete=models.CASCADE,null=False,blank=False,verbose_name="Coach")
+    coach_id = models.ForeignKey(coachs,on_delete=models.SET_NULL,null=True,blank=False,verbose_name="Coach")
     photo = models.ImageField(upload_to='images/',default=None,verbose_name="Foto")
     ##jugadores2_ids = models.ManyToManyField('jugadores',verbose_name="Jugadores")
     
@@ -89,9 +89,9 @@ class Play(models.Model):
     folio = models.CharField(max_length=200,verbose_name="Folio")
     fecha = models.DateTimeField() 
     liga = models.ForeignKey(League,on_delete=models.DO_NOTHING,verbose_name="Liga" )
-    team1 = models.ForeignKey(equipos,on_delete=models.DO_NOTHING, null=True, default=None,related_name='team1_plays',verbose_name="Equipo Local")
-    team2 = models.ForeignKey(equipos,on_delete=models.DO_NOTHING, null=True, default=None,related_name='team2_plays',verbose_name="Equipo Visitante")
-    estadio = models.ForeignKey(estadios,on_delete=models.DO_NOTHING, null=True, default=None,verbose_name="Estadio")
+    team1 = models.ForeignKey(equipos,on_delete=models.SET_NULL, null=True, default=None,related_name='team1_plays',verbose_name="Equipo Local")
+    team2 = models.ForeignKey(equipos,on_delete=models.SET_NULL, null=True, default=None,related_name='team2_plays',verbose_name="Equipo Visitante")
+    estadio = models.ForeignKey(estadios,on_delete=models.SET_NULL, null=True, default=None,verbose_name="Estadio")
 
     POSICION_CHOICES = [
         ('cen', 'Central'),

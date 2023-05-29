@@ -20,7 +20,7 @@
                 <td>{{arbitro.name}}</td>
                 <td><img src="{{ arbitro.photo.url }}" alt="Foto del arbitro" width="150"></td>
                 <td><a href='/editar-arbitro/{{arbitro.id}}' class="editar">Editar</a></td>
-                <td><a href='' class="eliminar">Eliminar</a></td>
+                <td><a href="{% url 'appteams:eliminar-arbitro' arbitro.id %}" class="eliminar">Eliminar</a></td>
             {% endfor %}
         </table>
     </div>
