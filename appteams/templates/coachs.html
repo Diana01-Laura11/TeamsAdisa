@@ -1,0 +1,28 @@
+{% extends 'layouts/barra.html' %}
+{% load static %}
+{%block blockname%}
+<h1 class="titulo">Lista de Coachs</h1>
+<div class="botones">
+    <a href='/registrar-coach' class="agregar">Agregar</a>
+</div>
+<div class="contenedor-tabla">
+    <table class="tabla">
+        <tr >
+            <td class="encabezado">Nombre</td>
+            <td class="encabezado">Foto</td>
+            <td class="encabezado" colspan="2"></td>
+
+        </tr>
+
+        {%for coach in coachs%}
+        <tr>
+            <td>{{coach.name}}</td>
+            <td><img src="{{ coach.photo.url }}" alt="Foto del coach" width="150"></td>
+            <td><a href='/editar-coach/{{coach.id}}' class="editar">Editar</a></td>
+            <td><a href="{% url 'appteams:eliminar-coach' coach.id %}" class="eliminarr">Eliminar</a></td> 
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{%endblock%}

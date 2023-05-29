@@ -2,7 +2,9 @@
 {% load static %}
 {%block blockname%}
 <h1 class="titulo">Lista de Jugadores</h1>
-
+<div class="botones">
+    <a href='/registrar-jugador' class="agregar">Agregar</a>
+</div>
 <div class="contenedor-tabla">
     <table class="tabla">
         <tr >
@@ -11,7 +13,7 @@
             <td class="encabezado">Foto</td>
             <td class="encabezado">Numero</td>
             <td class="encabezado">Posicion</td>
-            <td class="encabezado">Eliminar</td>
+            <td class="encabezado" colspan="2"></td>
 
         </tr>
 
@@ -22,7 +24,9 @@
             <td><img src="{{ jugador.photo.url }}" alt="Foto del jugador" width="150"></td>
             <td>{{jugador.numero}}</td>
             <td>{{jugador.posicion}}</td>
-            <td><a href="{% url 'appteams:eliminar_jugador' jugador.id %}">Eliminar</a></td>
+            <td><a href='/editar-jugador/{{jugador.id}}' class="editar">Editar</a></td>
+            <td><a href="{% url 'appteams:eliminar-jugador' jugador.id %}" class="eliminar">Eliminar</a></td>
+            
 
         </tr>
         {% endfor %}

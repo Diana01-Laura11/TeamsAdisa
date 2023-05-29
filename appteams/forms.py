@@ -21,7 +21,7 @@ class arbitros(forms.ModelForm):
 class equipos(forms.ModelForm):
     class Meta:
         model = equipos
-        fields = ["liga_id","name","coach_id"]
+        fields = ["liga_id","name","coach_id", "photo"]
         
 class League (forms.ModelForm):
     class Meta:
@@ -34,7 +34,7 @@ class Play(forms.ModelForm):
         widget=forms.DateTimeInput(attrs={'class': 'datetimepicker', 'type': 'datetime-local'}),)
     class Meta:
         model = Play
-        fields = ["folio","fecha","liga","team1","team2","estadio","arbitro","posicion"]
+        fields = ["folio","fecha","liga","team1","team2","estadio","arbitro_1","posicion_arbitro_1", "arbitro_2","posicion_arbitro_2", "arbitro_3","posicion_arbitro_3", "arbitro_4","posicion_arbitro_4"]
         
     
 

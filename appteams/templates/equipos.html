@@ -6,20 +6,28 @@
         <a href='/registrar-cedula' class="agregar">Agregar</a>
     </div>
     <div class="contenedor-tabla">
+        
         <table class="tabla">
             <tr >
                 <td class="encabezado">Nombre</td>
                 <td class="encabezado">Foto</td>
                 <td class="encabezado">Coach</td>
                 <td class="encabezado">Liga</td>
+                <td class="encabezado" colspan="2"></td>
             </tr>
 
             {%for equipo in equipos%}
             <tr>
                 <td>{{equipo.name}}</td>
+                {% if equipo.photo %}
                 <td><img src="{{ equipo.photo.url }}" alt="Foto del equipo" width="150"></td>
+                {% else %}
+                    <td>No hay foto disponible</td>
+                {% endif %}
                 <td>{{equipo.coach_id.name}}</td>
                 <td>{{equipo.liga_id.name}}</td>
+                <td><a href='/editar-equipo/{{equipo.id}}' class="editar">Editar</a></td>
+                <td><a href="{% url 'appteams:eliminar-equipo' equipo.id %}" class="eliminar">Eliminar</a></td>
             </tr>
             {% endfor %}
         </table>

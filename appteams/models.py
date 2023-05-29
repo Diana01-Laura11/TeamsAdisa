@@ -39,14 +39,14 @@ class jugadores(models.Model):
     name = models.CharField(max_length=200,verbose_name="Nombre del jugador")
     photo = models.ImageField(upload_to='images/',default=None,verbose_name="Foto")
     numero = models.IntegerField(verbose_name="Número de la playera")
-    posicion = [
+    pos = [
     ('del','Delantero'),
     ('def','Defensa'),
     ('por','Portero'),
     ('car', 'Carrilero'),
     ('cen', 'Central'),
     ]
-    posicion = models.CharField(max_length=3, choices=posicion,default='del',verbose_name="Posición")
+    posicion = models.CharField(max_length=3, choices=pos,default='del',verbose_name="Posición")
     
     def __str__(self):
         return self.name
@@ -92,15 +92,22 @@ class Play(models.Model):
     team1 = models.ForeignKey(equipos,on_delete=models.DO_NOTHING, null=True, default=None,related_name='team1_plays',verbose_name="Equipo Local")
     team2 = models.ForeignKey(equipos,on_delete=models.DO_NOTHING, null=True, default=None,related_name='team2_plays',verbose_name="Equipo Visitante")
     estadio = models.ForeignKey(estadios,on_delete=models.DO_NOTHING, null=True, default=None,verbose_name="Estadio")
-    arbitro = models.ForeignKey(arbitros, on_delete=models.DO_NOTHING, null=True, default=None, verbose_name="Arbitro")
 
     POSICION_CHOICES = [
         ('cen', 'Central'),
         ('ban', 'Bandera'),
         ('otro', 'Otro')
     ]
-    posicion = models.CharField(max_length=4, choices=POSICION_CHOICES, default='cen',verbose_name="Posición del arbitro")
-
+    
+    arbitro_1 = models.ForeignKey(arbitros, on_delete=models.DO_NOTHING, null=True, default=None, verbose_name="Primer Arbitro", related_name="primer_arbitro")
+    posicion_arbitro_1 = models.CharField(max_length=4, choices=POSICION_CHOICES, default='cen',verbose_name="Posición del primer arbitro")
+    arbitro_2 = models.ForeignKey(arbitros, on_delete=models.DO_NOTHING, null=True, default=None, verbose_name="Segundo Arbitro", related_name="segundo_arbitro")
+    posicion_arbitro_2 = models.CharField(max_length=4, choices=POSICION_CHOICES, default='cen',verbose_name="Posición del segundo arbitro")
+    arbitro_3 = models.ForeignKey(arbitros, on_delete=models.DO_NOTHING, null=True, default=None, verbose_name="Tercer Arbitro", related_name="tercer_arbitro")
+    posicion_arbitro_3 = models.CharField(max_length=4, choices=POSICION_CHOICES, default='cen',verbose_name="Posición del tercer arbitro")
+    arbitro_4 = models.ForeignKey(arbitros, on_delete=models.DO_NOTHING, null=True, default=None, verbose_name="Cuarto Arbitro", related_name="cuarto_arbitro")
+    posicion_arbitro_4 = models.CharField(max_length=4, choices=POSICION_CHOICES, default='cen',verbose_name="Posición del cuarto arbitro")
+    
     def __str__(self):
         return self.folio
     

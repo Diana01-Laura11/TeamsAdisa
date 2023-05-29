@@ -3,7 +3,7 @@ from . import views
 
 app_name="appteams"
 urlpatterns = [
-    path('', views.estadios_view),
+    path('', views.ver_equipos),
     path('registrar-cedula/', views.cedulas_view),
     path('registrar-arbitro/', views.arbitros_view),
     path('registrar-equipo/', views.equipos_view),
@@ -14,6 +14,26 @@ urlpatterns = [
     path('registrar-jugador/', views.jugadores_view),
     path('equipos/',views.ver_equipos),
     path('cedulas/',views.ver_cedulas),
+    path('League/', views.ver_ligas),
+    path('plays/', views.ver_juegos),
+    path('estadios/', views.ver_estadios),
+    path('arbitros/', views.ver_arbitros),
     path('jugadores/',views.ver_jugadores),
-    path('eliminar_jugador/<int:id>', views.eliminarJugador, name= 'eliminar_jugador')
+    path('coachs/',views.ver_coachs),
+    path('eliminar-jugador/<int:id>', views.eliminarJugador, name= 'eliminar-jugador'),
+    path('eliminar-coach/<int:id>', views.eliminarCoach, name= 'eliminar-coach'),
+    path('eliminar-equipo/<int:id>', views.eliminarEquipos, name= 'eliminar-equipo'),
+    path('eliminar-arbitro/<int:id>', views.eliminarArbitros, name= 'eliminar-arbitro'),
+    path('eliminar-liga/<int:id>', views.eliminarLigas, name= 'eliminar-liga'),
+    path('eliminar-cedula/<int:id>', views.eliminarCedulas, name= 'eliminar-cedula'),
+    path('eliminar-juego/<int:id>', views.eliminarJuegos, name= 'eliminar-juego'),
+    path('eliminar-estadio/<int:id>', views.eliminarEstadios, name= 'eliminar-estadio'),
+    path('editar-jugador/<int:id>', views.editarJugador,name='editar-jugador'),
+    path('editar-cedula/<int:id>', views.editarCedula,name='editar-cedula'),
+    path('editar-equipo/<int:id>', views.editarEquipo,name='editar-equipo'),
+    path('editar-arbitro/<int:id>', views.editarArbitro,name='editar-arbitro'),
+    path('editar-coach/<int:id>', views.editarCoach,name='editar-coach'),
+    path('editar-estadio/<int:id>', views.editarEstadio,name='editar-estadio'),
+    path('editar-liga/<int:id>', views.editarLiga,name='editar-liga'),
+    path('editar-juego/<int:id>', views.editarJuego,name='editar-juego'),
 ]

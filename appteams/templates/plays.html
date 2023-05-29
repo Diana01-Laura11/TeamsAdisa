@@ -1,0 +1,41 @@
+{% extends 'layouts/barra.html' %}
+{%block blockname%}
+
+    <h1 class="titulo">Lista de Juegos</h1>
+    <div class="botones">
+        <a href='/registrar-Play' class="agregar">Agregar</a>
+    </div>
+    <div class="contenedor-tabla">
+        <table class="tabla">
+            <tr >
+                <td class="encabezado">Folio</td>
+                <td class="encabezado">Fecha</td>
+                <td class="encabezado">Liga</td>
+                <td class="encabezado">Equipo Local</td>
+                <td class="encabezado">Equipo Visitante</td>
+                <td class="encabezado">Estadio</td>
+                <td class="encabezado" colspan="4">Arbitros</td>
+                <td class="encabezado" colspan="2"></td>
+                
+            </tr>
+
+            {%for juego in juegos%}
+            <tr>
+                <td>{{juego.folio}}</td>
+                <td>{{juego.fecha}}</td>
+                <td>{{juego.liga}}</td>
+                <td>{{juego.team1}}</td>
+                <td>{{juego.team2}}</td>
+                <td>{{juego.estadio}}</td>
+                <td><p>{{juego.arbitro_1}}</p> <p class="posicion_arb">{{juego.posicion_arbitro_1}}</p></td>
+                <td><p>{{juego.arbitro_2}}</p> <p class="posicion_arb">{{juego.posicion_arbitro_2}}</p></td>
+                <td><p>{{juego.arbitro_3}}</p> <p class="posicion_arb">{{juego.posicion_arbitro_3}}</p></td>
+                <td><p>{{juego.arbitro_4}}</p> <p class="posicion_arb">{{juego.posicion_arbitro_4}}</p></td>
+                <td><a href='/editar-juego/{{juego.id}}' class="editar">Editar</a></td>
+                <td><a href="{% url 'appteams:eliminar-juego' juego.id %}" class="eliminar">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{%endblock%}

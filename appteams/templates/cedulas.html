@@ -14,6 +14,7 @@
                 <td class="encabezado">Resultado</td>
                 <td class="encabezado">Fecha de inicio</td>
                 <td class="encabezado">Fecha de finalización</td>
+                <td class="encabezado" colspan="2"></td>
             </tr>
 
             {%for cedula in cedulas%}
@@ -24,6 +25,8 @@
                 <td>{{cedula.resultado}}</td>
                 <td>{{cedula.fecha_inicio}}</td>
                 <td>{{cedula.fecha_fin}}</td>
+                <td><a href='/editar-cedula/{{cedula.id}}' class="editar">Editar</a></td>
+                <td><a href="{% url 'appteams:eliminar-cedula' cedula.id %}" class="eliminar">Eliminar</a></td>
                 
             </tr>
             {% endfor %}

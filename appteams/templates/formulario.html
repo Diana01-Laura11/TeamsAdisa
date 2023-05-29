@@ -2,8 +2,12 @@
 {%block blockname%}
 <form method="post" enctype="multipart/form-data" >
     {% csrf_token %}
-    {{ form.as_p}}  {# Esto renderizará los campos del formulario como párrafos #}
-    <button type="submit">Guardar</button>
+    {% if error%}
+        <h2>{{error}}</h2>
+    {%else%}
+        {{ form.as_p}}  {# Esto renderizará los campos del formulario como párrafos #}
+        <button type="submit">Guardar</button>
+    {% endif %}
 </form>
 {%endblock%}
 

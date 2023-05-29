@@ -33,7 +33,6 @@ tbody tr:nth-child(even) {
 tbody tr:nth-child(odd) {
     background-color: #cd5151
 }
-
 .agregar{
     background-color: #f3a9a9;
     color: #4d2727;
@@ -45,7 +44,28 @@ tbody tr:nth-child(odd) {
 
     margin-left: 10%;
 }
+.editar{
+    background-color: #f56767;
+    color: #4d2727;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 8px;
+}
+.eliminar{
+    background-color: #c83e3e;
+    color: #4d2727;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 8px;
+}
 .botones{
     position: relative;
     display: inline;
+}
+
+.posicion_arb{
+    
+    border: #fff solid 2px;
+    border-radius: 15px;
+    color: #fff;
 }

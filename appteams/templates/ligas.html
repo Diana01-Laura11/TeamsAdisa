@@ -1,0 +1,26 @@
+{% extends 'layouts/barra.html' %}
+{%block blockname%}
+    <h1 class="titulo">Lista de ligas de fútbol</h1>
+    <div class="botones">
+        <a href='/registrar-League' class="agregar">Agregar</a>
+    </div>
+    <div class="contenedor-tabla">
+        <table class="tabla">
+            <tr >
+                <td class="encabezado">Nombre</td>
+                <td class="encabezado">Foto</td>
+                <td class="encabezado" colspan="2"></td>
+            </tr>
+
+            {%for liga in ligas%}
+            <tr>
+                <td>{{liga.name}}</td>
+                <td><img src="{{ liga.foto.url }}" alt="Foto de la liga" width="150"></td>
+                <td><a href='/editar-liga/{{liga.id}}' class="editar">Editar</a></td>
+                <td><a href="{% url 'appteams:eliminar-liga' liga.id %}" class="eliminar">Eliminar</a></td> 
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{%endblock%}

@@ -1,0 +1,28 @@
+{% extends 'layouts/barra.html' %}
+{%block blockname%}
+    <h1 class="titulo">Lista de Árbitros</h1>
+    <div class="botones">
+        <a href='/registrar-arbitro' class="agregar">Agregar</a>
+    </div>
+    <div class="contenedor-tabla">
+        <table class="tabla">
+            <tr >
+                <td class="encabezado">Liga</td>
+                <td class="encabezado">Nombre</td>
+                <td class="encabezado">Foto</td>
+                <td class="encabezado" colspan="2"></td>
+
+            </tr>
+
+            {%for arbitro in arbitros%}
+            <tr>
+                <td>{{arbitro.liga_id.name}}</td>
+                <td>{{arbitro.name}}</td>
+                <td><img src="{{ arbitro.photo.url }}" alt="Foto del arbitro" width="150"></td>
+                <td><a href='/editar-arbitro/{{arbitro.id}}' class="editar">Editar</a></td>
+                <td><a href='' class="eliminar">Eliminar</a></td>
+            {% endfor %}
+        </table>
+    </div>
+
+{%endblock%}
